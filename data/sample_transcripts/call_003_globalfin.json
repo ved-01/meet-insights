@@ -1,0 +1,191 @@
+{
+  "metadata": {
+    "call_id": "CALL-003",
+    "call_date": "2024-12-16T09:15:00",
+    "rep_name": "Sarah Johnson",
+    "rep_email": "sarah.johnson@company.com",
+    "prospect_name": "Robert Kim",
+    "company_name": "GlobalFin Solutions",
+    "call_duration_seconds": 2700,
+    "call_type": "Follow-up Call",
+    "deal_stage": "Negotiation"
+  },
+  "segments": [
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "Robert, thanks for making time. I know you mentioned your team had some questions after the technical review.",
+      "start_time": 0,
+      "end_time": 8
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "Yes, the technical team was impressed overall. Their main question is around data security and compliance. We're in financial services so SOC 2 and GDPR are non-negotiable.",
+      "start_time": 9,
+      "end_time": 24
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "Completely understand. We're SOC 2 Type II certified and GDPR compliant. I can send over our security documentation and compliance certificates.",
+      "start_time": 25,
+      "end_time": 35
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "That would be perfect. Also, we need data residency in the EU. Is that possible?",
+      "start_time": 36,
+      "end_time": 43
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "Yes, we have EU data centers in Frankfurt and Amsterdam. You can choose your data residency region.",
+      "start_time": 44,
+      "end_time": 52
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "Great. That checks a major box for us. Our compliance officer will be relieved.",
+      "start_time": 53,
+      "end_time": 60
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "Now, about pricing. Your proposal came in higher than we expected. We're comparing against two other vendors and they're about 30% cheaper.",
+      "start_time": 100,
+      "end_time": 113
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "I appreciate you being direct. Let me ask - are those vendors offering the same level of AI capabilities and integrations?",
+      "start_time": 114,
+      "end_time": 123
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "Honestly, no. Yours is more sophisticated. But budget is budget, and I need to justify the premium to our CFO.",
+      "start_time": 124,
+      "end_time": 134
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "What would really help is if you had an ROI calculator or some kind of business case template. Something I could fill in with our numbers and present to leadership.",
+      "start_time": 135,
+      "end_time": 148
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "We actually do have an ROI calculator. I should have mentioned it earlier - let me send that over right after this call.",
+      "start_time": 149,
+      "end_time": 158
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "Perfect. You know what else would be valuable? If you could add a TCO comparison tool that factors in implementation costs and time savings. That's what CFOs really want to see.",
+      "start_time": 159,
+      "end_time": 174
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "By the way, I've been using your trial for two weeks now and I have to say - the call summary feature is phenomenal. It's saved me probably 5 hours this week alone.",
+      "start_time": 200,
+      "end_time": 215
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "That's great to hear! The call summaries are one of our most loved features.",
+      "start_time": 216,
+      "end_time": 222
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "Seriously, it's like having a personal assistant on every call. My team is already asking when we can roll this out company-wide.",
+      "start_time": 223,
+      "end_time": 234
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "One thing that would make it even better - can you add multi-language support? We have teams in Japan and Germany who conduct calls in local languages.",
+      "start_time": 280,
+      "end_time": 294
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "Currently we support English, Spanish, French, and German. Japanese is in beta - I can get you early access if you'd like.",
+      "start_time": 295,
+      "end_time": 305
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "Yes please! That would be amazing. Our Japan team would love to test it.",
+      "start_time": 306,
+      "end_time": 313
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "I also noticed your emails have been getting caught in our spam filter. Not sure if others have reported that, but your nurture sequences never make it to my inbox.",
+      "start_time": 350,
+      "end_time": 364
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "That's really helpful feedback, I'll pass that to our marketing team. We definitely want to fix that.",
+      "start_time": 365,
+      "end_time": 373
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "Speaking of marketing - I read your recent blog post on 'The Future of Sales Intelligence'. Really well written. You should do more content like that.",
+      "start_time": 400,
+      "end_time": 413
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "Actually, you should write something about how companies can calculate the true cost of bad forecasting. That's a topic I'd share with my whole network.",
+      "start_time": 414,
+      "end_time": 427
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "Alright, let's talk timeline. If we can agree on terms by end of week, I can get the PO through before the holiday freeze.",
+      "start_time": 500,
+      "end_time": 512
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "That works for us. I'll have a revised proposal with the volume discount we discussed sent over by tomorrow.",
+      "start_time": 513,
+      "end_time": 522
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Robert Kim",
+      "text": "Sounds good. I'm excited to get this done. Your product is genuinely impressive and my team is already bought in.",
+      "start_time": 523,
+      "end_time": 533
+    }
+  ]
+}
+

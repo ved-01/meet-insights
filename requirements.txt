@@ -1,0 +1,35 @@
+# LangChain Core (v0.3.x - Latest stable)
+langchain>=0.3.0,<0.4.0
+langchain-openai>=0.2.0,<0.3.0
+langchain-core>=0.3.0,<0.4.0
+langsmith>=0.1.0  # LangSmith tracing and observability
+
+# Pydantic for data validation
+pydantic>=2.0.0,<3.0.0
+pydantic-settings>=2.0.0,<3.0.0
+
+# Web Framework (Option B)
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+jinja2>=3.1.0
+python-multipart>=0.0.9
+
+# Google Docs Integration (Option A)
+google-api-python-client>=2.150.0
+google-auth-httplib2>=0.2.0
+google-auth-oauthlib>=1.2.0
+
+# PDF Support
+pypdf>=4.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+httpx>=0.27.0
+rich>=13.0.0
+typer>=0.12.0
+python-dateutil>=2.9.0
+
+# Development
+pytest>=8.0.0
+pytest-asyncio>=0.24.0
+

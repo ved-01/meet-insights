@@ -1,0 +1,184 @@
+{
+  "metadata": {
+    "call_id": "CALL-001",
+    "call_date": "2024-12-18T10:30:00",
+    "rep_name": "Sarah Johnson",
+    "rep_email": "sarah.johnson@company.com",
+    "prospect_name": "Michael Chen",
+    "company_name": "Acme Corp",
+    "call_duration_seconds": 2340,
+    "call_type": "Discovery Call",
+    "deal_stage": "Qualification"
+  },
+  "segments": [
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "Hi Michael, thanks for taking the time to chat today. I'd love to learn more about what's driving your interest in our platform.",
+      "start_time": 0,
+      "end_time": 8
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "Absolutely, Sarah. We've been struggling with our current solution for about a year now. The main pain point is that our sales team spends way too much time on manual data entry instead of actually selling.",
+      "start_time": 9,
+      "end_time": 22
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "That's a common challenge we hear. Can you walk me through what a typical day looks like for your sales reps?",
+      "start_time": 23,
+      "end_time": 30
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "Sure. They probably spend 2-3 hours just updating CRM records, logging calls, and creating reports. It's killing their productivity. We've actually calculated it costs us about 500 hours per month across the team.",
+      "start_time": 31,
+      "end_time": 48
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "500 hours is significant. That's essentially losing 3 full-time employees worth of selling time.",
+      "start_time": 49,
+      "end_time": 55
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "Exactly! And honestly, the data quality is terrible because reps rush through it. Our forecasting is always off because the pipeline data is outdated.",
+      "start_time": 56,
+      "end_time": 68
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "I saw on your website that you have AI-powered automation. Does that actually work or is it just marketing speak? I've been burned before by tools that promise AI magic but deliver nothing.",
+      "start_time": 69,
+      "end_time": 82
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "That's a fair concern. Let me show you exactly how it works. The AI automatically captures call notes, updates contact records, and even suggests next steps based on the conversation.",
+      "start_time": 83,
+      "end_time": 95
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "Oh wow, that's pretty cool. Can it integrate with Salesforce? We're pretty locked into that ecosystem.",
+      "start_time": 96,
+      "end_time": 103
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "Absolutely, Salesforce integration is one of our strongest features. It syncs in real-time.",
+      "start_time": 104,
+      "end_time": 110
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "Nice. What about HubSpot? We use that for marketing and it would be amazing if we could get both systems talking to each other through your platform.",
+      "start_time": 111,
+      "end_time": 122
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "HubSpot integration is on our roadmap for Q1. I can definitely pass along that feedback to our product team as another vote for prioritizing it.",
+      "start_time": 123,
+      "end_time": 133
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "That would be huge. If you could also add something that automatically creates follow-up tasks based on what was discussed in a call, that would be a game-changer for us.",
+      "start_time": 134,
+      "end_time": 147
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "Actually, one thing I love about what I've seen so far is how clean the interface is. Our current tool looks like it was designed in 2005. Your UI is really intuitive.",
+      "start_time": 250,
+      "end_time": 264
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "Thank you! We put a lot of effort into making it user-friendly. Adoption is everything with these tools.",
+      "start_time": 265,
+      "end_time": 272
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "For sure. We tried another platform last year and our reps basically revolted because it was so clunky. This looks like something they'd actually use.",
+      "start_time": 273,
+      "end_time": 285
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "Quick question - how long does implementation typically take? We're trying to get something in place before Q1 planning.",
+      "start_time": 400,
+      "end_time": 410
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "For a team your size, typically 2-3 weeks. We handle most of the heavy lifting.",
+      "start_time": 411,
+      "end_time": 418
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "That's faster than I expected. What about pricing? Is it per user or based on usage?",
+      "start_time": 419,
+      "end_time": 426
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "We have both options. For most teams like yours, the per-user pricing makes more sense. I can put together a custom quote based on your team size.",
+      "start_time": 427,
+      "end_time": 438
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "Perfect. Also, I was confused by your pricing page - it wasn't clear what features are included in each tier. Maybe that's something to clarify?",
+      "start_time": 439,
+      "end_time": 450
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "Overall though, I'm really impressed. This could easily save us 300+ hours per month if the automation works as well as you showed.",
+      "start_time": 520,
+      "end_time": 532
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "Sarah Johnson",
+      "text": "That's actually conservative based on what similar companies have achieved. One of our customers, TechFlow, saw a 60% reduction in admin time within the first month.",
+      "start_time": 533,
+      "end_time": 545
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Michael Chen",
+      "text": "60% is incredible. I'd love to talk to them actually if that's possible. Peer references are super valuable for us.",
+      "start_time": 546,
+      "end_time": 556
+    }
+  ]
+}
+

@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Insights Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --bg-card-hover: #22222e;
+            --accent-cyan: #00d4ff;
+            --accent-magenta: #ff006e;
+            --accent-lime: #b8ff00;
+            --accent-orange: #ff8c00;
+            --accent-purple: #8b5cf6;
+            --accent-teal: #14b8a6;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: #2a2a3a;
+            --success: #22c55e;
+            --warning: #eab308;
+            --error: #ef4444;
+            --gradient-1: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            --gradient-2: linear-gradient(135deg, var(--accent-magenta), var(--accent-orange));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Animated background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% -20%, rgba(0, 212, 255, 0.15), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255, 0, 110, 0.1), transparent);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-meta {
+            text-align: right;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .header-meta .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border-radius: 999px;
+            margin-top: 0.5rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+            border-color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-input {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .filter-input:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        .filter-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Top Themes */
+        .themes-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .theme-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1.25rem;
+            border-left: 3px solid var(--accent-magenta);
+        }
+
+        .theme-card h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-count {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        .theme-examples {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Categories Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            border-color: var(--accent-purple);
+        }
+
+        .category-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .category-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .category-icon.product { background: linear-gradient(135deg, #00d4ff33, #8b5cf633); }
+        .category-icon.feedback { background: linear-gradient(135deg, #22c55e33, #14b8a633); }
+        .category-icon.marketing { background: linear-gradient(135deg, #ff006e33, #ff8c0033); }
+        .category-icon.social { background: linear-gradient(135deg, #8b5cf633, #06b6d433); }
+        .category-icon.faq { background: linear-gradient(135deg, #eab30833, #f9731633); }
+        .category-icon.blog { background: linear-gradient(135deg, #14b8a633, #22c55e33); }
+
+        .category-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .category-description {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .category-count {
+            margin-left: auto;
+            background: var(--bg-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent-cyan);
+        }
+
+        .category-content {
+            padding: 1.5rem;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .category-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .category-content::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        .category-content::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        /* Insight Item */
+        .insight-item {
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .insight-item:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .insight-item.high { border-left-color: var(--success); }
+        .insight-item.medium { border-left-color: var(--warning); }
+        .insight-item.low { border-left-color: var(--error); }
+
+        .insight-content {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .insight-quote {
+            font-style: italic;
+            color: var(--accent-cyan);
+            padding: 0.75rem 1rem;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 8px;
+            margin: 0.75rem 0;
+            font-size: 0.875rem;
+        }
+
+        .insight-quote::before {
+            content: '"';
+        }
+
+        .insight-quote::after {
+            content: '"';
+        }
+
+        .insight-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .confidence-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.625rem;
+            text-transform: uppercase;
+        }
+
+        .confidence-badge.high { background: rgba(34, 197, 94, 0.2); color: var(--success); }
+        .confidence-badge.medium { background: rgba(234, 179, 8, 0.2); color: var(--warning); }
+        .confidence-badge.low { background: rgba(239, 68, 68, 0.2); color: var(--error); }
+
+        /* No Data State */
+        .no-data {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .no-data-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .no-data h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .no-data p {
+            color: var(--text-muted);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .no-data code {
+            display: block;
+            margin-top: 1.5rem;
+            background: var(--bg-card);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent-lime);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .header-meta {
+                text-align: left;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">📊</div>
+                <h1>Meet Insights</h1>
+            </div>
+            <div class="header-meta">
+                {% if last_updated %}
+                <div>Last updated: {{ last_updated.strftime('%Y-%m-%d %H:%M') }}</div>
+                <div class="status">
+                    <span class="status-dot"></span>
+                    {% if session_index is not none %}
+                        Session View
+                    {% else %}
+                        Live Dashboard
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </header>
+
+        {% if sessions and sessions|length > 0 %}
+        <!-- Session Switcher -->
+        <div style="margin-bottom: 1.5rem;">
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+                Views:
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <a href="/"
+                   style="text-decoration: none;">
+                    <button
+                        style="
+                            padding: 0.4rem 0.75rem;
+                            border-radius: 999px;
+                            border: 1px solid {{ session_index is none and 'var(--accent-cyan)' or 'var(--border-color)' }};
+                            background: {{ session_index is none and 'var(--bg-card-hover)' or 'var(--bg-card)' }};
+                            color: {{ session_index is none and 'var(--text-primary)' or 'var(--text-secondary)' }};
+                            font-size: 0.8rem;
+                            cursor: pointer;
+                            font-family: inherit;
+                        ">
+                        🔁 All insights
+                    </button>
+                </a>
+                {% for s in sessions %}
+                <a href="/sessions/{{ s.index }}"
+                   style="text-decoration: none;">
+                    <button
+                        style="
+                            padding: 0.4rem 0.75rem;
+                            border-radius: 999px;
+                            border: 1px solid {{ session_index == s.index and 'var(--accent-cyan)' or 'var(--border-color)' }};
+                            background: {{ session_index == s.index and 'var(--bg-card-hover)' or 'var(--bg-card)' }};
+                            color: {{ session_index == s.index and 'var(--text-primary)' or 'var(--text-secondary)' }};
+                            font-size: 0.8rem;
+                            cursor: pointer;
+                            font-family: inherit;
+                        ">
+                        📁 {{ s.label }} ({{ s.calls }} calls, {{ s.total_insights }} insights)
+                    </button>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if insights %}
+        <!-- Upload / Paste Section (always visible) -->
+        <div class="upload-section" style="margin-bottom: 2.5rem; text-align: left; max-width: 700px;">
+            <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--text-secondary);">
+                Add another transcript
+            </h2>
+            <div class="upload-tabs" style="display: flex; gap: 1rem; margin-bottom: 1.25rem;">
+                <button class="tab-btn active" onclick="showTab(event, 'paste')" style="flex: 1; padding: 0.6rem 0.75rem; background: var(--bg-card); border: 1px solid var(--accent-cyan); color: var(--text-primary); border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 0.9rem;">📝 Paste Text</button>
+                <button class="tab-btn" onclick="showTab(event, 'upload')" style="flex: 1; padding: 0.6rem 0.75rem; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary); border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 0.9rem;">📄 Upload File</button>
+            </div>
+            <div style="background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); padding: 1rem;">
+                <!-- Paste Tab -->
+                <div id="paste-tab" class="tab-content">
+                    <form id="pasteForm" action="/api/analyze/text" method="post" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <textarea name="text" placeholder="Paste your transcript text here..." style="width: 100%; min-height: 140px; padding: 0.75rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit; resize: vertical;" required></textarea>
+                        <div style="display: flex; gap: 0.75rem;">
+                            <input type="text" name="rep_name" placeholder="Rep name (optional)" style="flex: 1; padding: 0.6rem 0.75rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit; font-size: 0.85rem;">
+                            <input type="text" name="company_name" placeholder="Company (optional)" style="flex: 1; padding: 0.6rem 0.75rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit; font-size: 0.85rem;">
+                        </div>
+                        <button type="submit" id="pasteSubmit" style="padding: 0.8rem 1rem; background: var(--gradient-1); border: none; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; font-family: inherit; font-size: 0.9rem;">🚀 Analyze Transcript</button>
+                    </form>
+                </div>
+                <!-- Upload Tab -->
+                <div id="upload-tab" class="tab-content" style="display: none;">
+                    <form id="uploadForm" action="/api/analyze/file" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div style="border: 2px dashed var(--border-color); border-radius: 8px; padding: 1.5rem; text-align: center; cursor: pointer;" onclick="document.getElementById('fileInput').click()">
+                            <div style="font-size: 1.7rem; margin-bottom: 0.25rem;">📂</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">Click to upload PDF or TXT file</div>
+                            <div id="fileName" style="margin-top: 0.4rem; color: var(--accent-cyan); font-size: 0.85rem;"></div>
+                        </div>
+                        <input type="file" id="fileInput" name="file" accept=".pdf,.txt,.json" style="display: none;" onchange="document.getElementById('fileName').textContent = this.files[0]?.name || ''" required>
+                        <div style="display: flex; gap: 0.75rem;">
+                            <input type="text" name="rep_name" placeholder="Rep name (optional)" style="flex: 1; padding: 0.6rem 0.75rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit; font-size: 0.85rem;">
+                            <input type="text" name="company_name" placeholder="Company (optional)" style="flex: 1; padding: 0.6rem 0.75rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit; font-size: 0.85rem;">
+                        </div>
+                        <button type="submit" id="uploadSubmit" style="padding: 0.8rem 1rem; background: var(--gradient-1); border: none; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; font-family: inherit; font-size: 0.9rem;">🚀 Analyze File</button>
+                    </form>
+                </div>
+                <div id="statusMessage" style="margin-top: 0.75rem; padding: 0.75rem; border-radius: 8px; display: none; font-size: 0.85rem;"></div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Calls Analyzed</div>
+                <div class="stat-value">{{ insights.call_ids|length }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Insights</div>
+                <div class="stat-value">{{ insights.total_insights }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Product Ideas</div>
+                <div class="stat-value">{{ insights.product_recommendations.insights|length }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Testimonials</div>
+                <div class="stat-value">{{ insights.positive_feedback.insights|length }}</div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <input type="text" class="filter-input" placeholder="🔍 Search insights..." id="searchInput">
+            <input type="text" class="filter-input" placeholder="👤 Filter by rep..." id="repFilter">
+            <input type="date" class="filter-input" id="dateFilter">
+        </div>
+
+        {% if rollup and rollup.top_themes %}
+        <!-- Top Themes -->
+        <div class="themes-section">
+            <div class="section-header">
+                <span class="section-icon">🔥</span>
+                <h2>Top Themes This Week</h2>
+            </div>
+            <div class="themes-grid">
+                {% for theme in rollup.top_themes[:5] %}
+                <div class="theme-card">
+                    <h3>{{ theme.theme }}</h3>
+                    <span class="theme-count">{{ theme.occurrence_count }}x mentioned</span>
+                    <div class="theme-examples">
+                        {% for example in theme.example_insights[:2] %}
+                        <p>• {{ example }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Categories -->
+        <div class="categories-grid">
+            <!-- Product Recommendations -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon product">🚀</div>
+                    <div>
+                        <div class="category-title">Product Recommendations</div>
+                        <div class="category-description">Feature requests, integrations, missing capabilities</div>
+                    </div>
+                    <div class="category-count">{{ insights.product_recommendations.insights|length }}</div>
+                </div>
+                <div class="category-content">
+                    {% for insight in insights.product_recommendations.insights %}
+                    <div class="insight-item {{ insight.confidence.value if insight.confidence.value else insight.confidence }}" data-date="{{ insight.source.call_date.strftime('%Y-%m-%d') }}" data-rep="{{ insight.source.rep_name.lower() }}">
+                        <div class="insight-content">{{ insight.content }}</div>
+                        {% if insight.direct_quote %}
+                        <div class="insight-quote">{{ insight.direct_quote }}</div>
+                        {% endif %}
+                        <div class="insight-meta">
+                            <span class="confidence-badge {{ insight.confidence.value if insight.confidence.value else insight.confidence }}">
+                                {{ insight.confidence.value if insight.confidence.value else insight.confidence }}
+                            </span>
+                            <span>{{ insight.source.format_reference() }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Positive Feedback -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon feedback">⭐</div>
+                    <div>
+                        <div class="category-title">Positive Feedback & Testimonials</div>
+                        <div class="category-description">Quotes, outcomes, value statements</div>
+                    </div>
+                    <div class="category-count">{{ insights.positive_feedback.insights|length }}</div>
+                </div>
+                <div class="category-content">
+                    {% for insight in insights.positive_feedback.insights %}
+                    <div class="insight-item {{ insight.confidence.value if insight.confidence.value else insight.confidence }}" data-date="{{ insight.source.call_date.strftime('%Y-%m-%d') }}" data-rep="{{ insight.source.rep_name.lower() }}">
+                        <div class="insight-content">{{ insight.content }}</div>
+                        {% if insight.direct_quote %}
+                        <div class="insight-quote">{{ insight.direct_quote }}</div>
+                        {% endif %}
+                        <div class="insight-meta">
+                            <span class="confidence-badge {{ insight.confidence.value if insight.confidence.value else insight.confidence }}">
+                                {{ insight.confidence.value if insight.confidence.value else insight.confidence }}
+                            </span>
+                            <span>{{ insight.source.format_reference() }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Marketing Messaging -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon marketing">📣</div>
+                    <div>
+                        <div class="category-title">Marketing & Brand Messaging</div>
+                        <div class="category-description">Website, emails, positioning feedback</div>
+                    </div>
+                    <div class="category-count">{{ insights.marketing_messaging.insights|length }}</div>
+                </div>
+                <div class="category-content">
+                    {% for insight in insights.marketing_messaging.insights %}
+                    <div class="insight-item {{ insight.confidence.value if insight.confidence.value else insight.confidence }}" data-date="{{ insight.source.call_date.strftime('%Y-%m-%d') }}" data-rep="{{ insight.source.rep_name.lower() }}">
+                        <div class="insight-content">{{ insight.content }}</div>
+                        {% if insight.direct_quote %}
+                        <div class="insight-quote">{{ insight.direct_quote }}</div>
+                        {% endif %}
+                        <div class="insight-meta">
+                            <span class="confidence-badge {{ insight.confidence.value if insight.confidence.value else insight.confidence }}">
+                                {{ insight.confidence.value if insight.confidence.value else insight.confidence }}
+                            </span>
+                            <span>{{ insight.source.format_reference() }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Social Messaging -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon social">📱</div>
+                    <div>
+                        <div class="category-title">Social Messaging</div>
+                        <div class="category-description">Hooks, punchy phrases, social-ready quotes</div>
+                    </div>
+                    <div class="category-count">{{ insights.social_messaging.insights|length }}</div>
+                </div>
+                <div class="category-content">
+                    {% for insight in insights.social_messaging.insights %}
+                    <div class="insight-item {{ insight.confidence.value if insight.confidence.value else insight.confidence }}" data-date="{{ insight.source.call_date.strftime('%Y-%m-%d') }}" data-rep="{{ insight.source.rep_name.lower() }}">
+                        <div class="insight-content">{{ insight.content }}</div>
+                        {% if insight.direct_quote %}
+                        <div class="insight-quote">{{ insight.direct_quote }}</div>
+                        {% endif %}
+                        <div class="insight-meta">
+                            <span class="confidence-badge {{ insight.confidence.value if insight.confidence.value else insight.confidence }}">
+                                {{ insight.confidence.value if insight.confidence.value else insight.confidence }}
+                            </span>
+                            <span>{{ insight.source.format_reference() }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- FAQ Ideas -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon faq">❓</div>
+                    <div>
+                        <div class="category-title">FAQs Section Ideas</div>
+                        <div class="category-description">Common questions, objections, confusion points</div>
+                    </div>
+                    <div class="category-count">{{ insights.faq_ideas.insights|length }}</div>
+                </div>
+                <div class="category-content">
+                    {% for insight in insights.faq_ideas.insights %}
+                    <div class="insight-item {{ insight.confidence.value if insight.confidence.value else insight.confidence }}" data-date="{{ insight.source.call_date.strftime('%Y-%m-%d') }}" data-rep="{{ insight.source.rep_name.lower() }}">
+                        <div class="insight-content">{{ insight.content }}</div>
+                        {% if insight.direct_quote %}
+                        <div class="insight-quote">{{ insight.direct_quote }}</div>
+                        {% endif %}
+                        <div class="insight-meta">
+                            <span class="confidence-badge {{ insight.confidence.value if insight.confidence.value else insight.confidence }}">
+                                {{ insight.confidence.value if insight.confidence.value else insight.confidence }}
+                            </span>
+                            <span>{{ insight.source.format_reference() }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Blog Topics -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon blog">📝</div>
+                    <div>
+                        <div class="category-title">Blog Topics & Ideas</div>
+                        <div class="category-description">Pain points, trends, how-to content ideas</div>
+                    </div>
+                    <div class="category-count">{{ insights.blog_topics.insights|length }}</div>
+                </div>
+                <div class="category-content">
+                    {% for insight in insights.blog_topics.insights %}
+                    <div class="insight-item {{ insight.confidence.value if insight.confidence.value else insight.confidence }}" data-date="{{ insight.source.call_date.strftime('%Y-%m-%d') }}" data-rep="{{ insight.source.rep_name.lower() }}">
+                        <div class="insight-content">{{ insight.content }}</div>
+                        {% if insight.direct_quote %}
+                        <div class="insight-quote">{{ insight.direct_quote }}</div>
+                        {% endif %}
+                        <div class="insight-meta">
+                            <span class="confidence-badge {{ insight.confidence.value if insight.confidence.value else insight.confidence }}">
+                                {{ insight.confidence.value if insight.confidence.value else insight.confidence }}
+                            </span>
+                            <span>{{ insight.source.format_reference() }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+        <!-- No Data State -->
+        <div class="no-data">
+            <div class="no-data-icon">📭</div>
+            <h2>No Insights Yet</h2>
+            <p>Upload a transcript or paste text below to extract insights.</p>
+            
+            <!-- Upload Section -->
+            <div class="upload-section" style="margin-top: 2rem; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <div class="upload-tabs" style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                    <button class="tab-btn active" onclick="showTab('paste')" style="flex: 1; padding: 0.75rem; background: var(--bg-card); border: 1px solid var(--accent-cyan); color: var(--text-primary); border-radius: 8px; cursor: pointer; font-family: inherit;">📝 Paste Text</button>
+                    <button class="tab-btn" onclick="showTab('upload')" style="flex: 1; padding: 0.75rem; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary); border-radius: 8px; cursor: pointer; font-family: inherit;">📄 Upload File</button>
+                </div>
+                
+                <!-- Paste Tab -->
+                <div id="paste-tab" class="tab-content">
+                    <form id="pasteForm" action="/api/analyze/text" method="post" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <textarea name="text" placeholder="Paste your transcript text here...&#10;&#10;Example:&#10;Sarah: Hi, thanks for joining today's call...&#10;Michael: Thanks for having me..." style="width: 100%; min-height: 200px; padding: 1rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit; resize: vertical;" required></textarea>
+                        <div style="display: flex; gap: 1rem;">
+                            <input type="text" name="rep_name" placeholder="Rep name (optional)" style="flex: 1; padding: 0.75rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit;">
+                            <input type="text" name="company_name" placeholder="Company (optional)" style="flex: 1; padding: 0.75rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit;">
+                        </div>
+                        <button type="submit" id="pasteSubmit" style="padding: 1rem; background: var(--gradient-1); border: none; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; font-family: inherit;">🚀 Analyze Transcript</button>
+                    </form>
+                </div>
+                
+                <!-- Upload Tab -->
+                <div id="upload-tab" class="tab-content" style="display: none;">
+                    <form id="uploadForm" action="/api/analyze/file" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="border: 2px dashed var(--border-color); border-radius: 8px; padding: 2rem; text-align: center; cursor: pointer;" onclick="document.getElementById('fileInput').click()">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📂</div>
+                            <div style="color: var(--text-secondary);">Click to upload PDF or TXT file</div>
+                            <div id="fileName" style="margin-top: 0.5rem; color: var(--accent-cyan);"></div>
+                        </div>
+                        <input type="file" id="fileInput" name="file" accept=".pdf,.txt,.json" style="display: none;" onchange="document.getElementById('fileName').textContent = this.files[0]?.name || ''" required>
+                        <div style="display: flex; gap: 1rem;">
+                            <input type="text" name="rep_name" placeholder="Rep name (optional)" style="flex: 1; padding: 0.75rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit;">
+                            <input type="text" name="company_name" placeholder="Company (optional)" style="flex: 1; padding: 0.75rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit;">
+                        </div>
+                        <button type="submit" id="uploadSubmit" style="padding: 1rem; background: var(--gradient-1); border: none; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; font-family: inherit;">🚀 Analyze File</button>
+                    </form>
+                </div>
+                
+                <div id="statusMessage" style="margin-top: 1rem; padding: 1rem; border-radius: 8px; display: none;"></div>
+            </div>
+            
+            <p style="margin-top: 2rem; color: var(--text-muted);">Or run from command line:</p>
+            <code>python run.py --output web</code>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        // Combined filter function - applies all filters together
+        function applyAllFilters() {
+            const search = document.getElementById('searchInput')?.value.toLowerCase() || '';
+            const rep = document.getElementById('repFilter')?.value.toLowerCase() || '';
+            const date = document.getElementById('dateFilter')?.value || '';
+
+            document.querySelectorAll('.insight-item').forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const itemRep = item.getAttribute('data-rep') || '';
+                const itemDate = item.getAttribute('data-date') || '';
+
+                let show = true;
+
+                // Search filter
+                if (search && !text.includes(search)) {
+                    show = false;
+                }
+
+                // Rep filter
+                if (rep && !itemRep.includes(rep)) {
+                    show = false;
+                }
+
+                // Date filter
+                if (date && itemDate !== date) {
+                    show = false;
+                }
+
+                item.style.display = show ? '' : 'none';
+            });
+        }
+
+        // Search filter
+        document.getElementById('searchInput')?.addEventListener('input', function(e) {
+            applyAllFilters();
+        });
+
+        // Rep filter
+        document.getElementById('repFilter')?.addEventListener('input', function(e) {
+            applyAllFilters();
+        });
+
+        // Date filter
+        document.getElementById('dateFilter')?.addEventListener('change', function(e) {
+            applyAllFilters();
+        });
+
+        // Auto-refresh every 30 seconds (only on main dashboard view)
+        {% if session_index is none %}
+        setInterval(() => {
+            fetch('/health').then(r => r.json()).then(data => {
+                if (data.has_data && data.last_updated !== '{{ last_updated.isoformat() if last_updated else "" }}') {
+                    location.reload();
+                }
+            }).catch(() => {});
+        }, 30000);
+        {% endif %}
+        
+        // Tab switching
+        function showTab(event, tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.style.borderColor = 'var(--border-color)';
+                el.style.color = 'var(--text-secondary)';
+                el.classList.remove('active');
+            });
+            
+            document.getElementById(tab + '-tab').style.display = 'block';
+            event.target.style.borderColor = 'var(--accent-cyan)';
+            event.target.style.color = 'var(--text-primary)';
+            event.target.classList.add('active');
+        }
+        
+        // Form submission handlers
+        function showStatus(message, isError = false) {
+            const el = document.getElementById('statusMessage');
+            el.textContent = message;
+            el.style.display = 'block';
+            el.style.background = isError ? 'rgba(239, 68, 68, 0.2)' : 'rgba(34, 197, 94, 0.2)';
+            el.style.color = isError ? 'var(--error)' : 'var(--success)';
+        }
+        
+        function setLoading(formId, loading) {
+            const btn = document.querySelector(`#${formId} button[type="submit"]`);
+            if (loading) {
+                btn.disabled = true;
+                btn.innerHTML = '⏳ Analyzing...';
+            } else {
+                btn.disabled = false;
+                btn.innerHTML = '🚀 Analyze ' + (formId === 'pasteForm' ? 'Transcript' : 'File');
+            }
+        }
+        
+        document.getElementById('pasteForm')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            setLoading('pasteForm', true);
+            
+            try {
+                const formData = new FormData(this);
+                const response = await fetch('/api/analyze/text', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showStatus(`✅ Analysis complete! Found ${data.total_insights} insights.`);
+                    setTimeout(() => location.reload(), 1500);
+                } else {
+                    showStatus(`❌ ${data.detail || 'Analysis failed'}`, true);
+                }
+            } catch (err) {
+                showStatus(`❌ Error: ${err.message}`, true);
+            } finally {
+                setLoading('pasteForm', false);
+            }
+        });
+        
+        document.getElementById('uploadForm')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            setLoading('uploadForm', true);
+            
+            try {
+                const formData = new FormData(this);
+                const response = await fetch('/api/analyze/file', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showStatus(`✅ Analysis complete! Found ${data.total_insights} insights.`);
+                    setTimeout(() => location.reload(), 1500);
+                } else {
+                    showStatus(`❌ ${data.detail || 'Analysis failed'}`, true);
+                }
+            } catch (err) {
+                showStatus(`❌ Error: ${err.message}`, true);
+            } finally {
+                setLoading('uploadForm', false);
+            }
+        });
+    </script>
+</body>
+</html>
+

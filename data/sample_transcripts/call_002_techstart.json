@@ -1,0 +1,191 @@
+{
+  "metadata": {
+    "call_id": "CALL-002",
+    "call_date": "2024-12-17T14:00:00",
+    "rep_name": "James Wilson",
+    "rep_email": "james.wilson@company.com",
+    "prospect_name": "Emma Rodriguez",
+    "company_name": "TechStart Inc",
+    "call_duration_seconds": 1980,
+    "call_type": "Demo Call",
+    "deal_stage": "Evaluation"
+  },
+  "segments": [
+    {
+      "speaker": "rep",
+      "speaker_name": "James Wilson",
+      "text": "Hi Emma, great to connect again. Last time we talked about your team's challenges with pipeline visibility. Ready to dive into the demo?",
+      "start_time": 0,
+      "end_time": 10
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Emma Rodriguez",
+      "text": "Yes, definitely! I brought our VP of Sales, David, to join as well. He's the ultimate decision maker on this.",
+      "start_time": 11,
+      "end_time": 19
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "James Wilson",
+      "text": "Perfect, welcome David. Let me show you how our dashboard gives you real-time visibility into your entire pipeline.",
+      "start_time": 20,
+      "end_time": 28
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "David",
+      "text": "Quick question before we start - we've looked at three other tools this month. What makes you different from Gong or Chorus?",
+      "start_time": 29,
+      "end_time": 39
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "James Wilson",
+      "text": "Great question. While those are solid tools, our key differentiator is the predictive analytics. We don't just show you what happened - we forecast what's likely to happen based on conversation patterns.",
+      "start_time": 40,
+      "end_time": 54
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Emma Rodriguez",
+      "text": "That's interesting. Our biggest headache is deals that go dark. Reps mark them as 'likely to close' and then nothing happens for months.",
+      "start_time": 55,
+      "end_time": 67
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "James Wilson",
+      "text": "We have an early warning system for exactly that. It flags deals where engagement drops or when negative signals appear in conversations.",
+      "start_time": 68,
+      "end_time": 78
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "David",
+      "text": "Now that's something I could use. How accurate are these predictions?",
+      "start_time": 79,
+      "end_time": 85
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "James Wilson",
+      "text": "Our customers typically see 85% accuracy after the system learns from about 3 months of data.",
+      "start_time": 86,
+      "end_time": 93
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "David",
+      "text": "85% is solid. We're currently at maybe 50% accuracy on our forecasts. The board is constantly on my case about it.",
+      "start_time": 94,
+      "end_time": 105
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Emma Rodriguez",
+      "text": "Can it also track competitor mentions? We often lose deals to CloudRival and finding out earlier would help us counter their pitch.",
+      "start_time": 150,
+      "end_time": 162
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "James Wilson",
+      "text": "Absolutely. You can set up custom trackers for any competitor or topic. It'll alert you in real-time when they come up.",
+      "start_time": 163,
+      "end_time": 172
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "David",
+      "text": "You should build a feature that automatically suggests battle cards when competitors are mentioned. That would be incredibly useful.",
+      "start_time": 173,
+      "end_time": 184
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "James Wilson",
+      "text": "That's actually in our Q2 roadmap! Great minds think alike.",
+      "start_time": 185,
+      "end_time": 191
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Emma Rodriguez",
+      "text": "I have to say, I've been looking at your website and the case studies are really compelling. The ROI numbers from the Fintech company were exactly what I needed to build my business case.",
+      "start_time": 250,
+      "end_time": 265
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "David",
+      "text": "The demo is impressive. One concern though - our IT team is stretched thin. How much effort is onboarding really?",
+      "start_time": 300,
+      "end_time": 310
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "James Wilson",
+      "text": "Very minimal. It's a cloud solution with SSO support. Most IT teams tell us it's one of the easiest deployments they've done.",
+      "start_time": 311,
+      "end_time": 321
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Emma Rodriguez",
+      "text": "That's a relief. Our last software implementation took 6 months and was a nightmare.",
+      "start_time": 322,
+      "end_time": 330
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "David",
+      "text": "Speaking of nightmares, does this work with Zoom? We're 100% remote and Zoom is our lifeline.",
+      "start_time": 331,
+      "end_time": 340
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "James Wilson",
+      "text": "Native Zoom integration, yes. Also works with Teams, Google Meet, and most VoIP systems.",
+      "start_time": 341,
+      "end_time": 349
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Emma Rodriguez",
+      "text": "Perfect. What about mobile? Our reps are often on the road and need to access things from their phones.",
+      "start_time": 350,
+      "end_time": 359
+    },
+    {
+      "speaker": "rep",
+      "speaker_name": "James Wilson",
+      "text": "We have iOS and Android apps. The mobile experience is actually something we've invested heavily in.",
+      "start_time": 360,
+      "end_time": 368
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "David",
+      "text": "Look, I'm going to be honest with you. We need to move fast on this. If we can get a deal done this quarter, I have budget to use. Otherwise we'll have to wait until next fiscal year.",
+      "start_time": 400,
+      "end_time": 415
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "Emma Rodriguez",
+      "text": "One last thing - I noticed your pricing calculator on the website was broken when I tried it yesterday. Just FYI.",
+      "start_time": 450,
+      "end_time": 460
+    },
+    {
+      "speaker": "prospect",
+      "speaker_name": "David",
+      "text": "Overall, this is probably the best demo we've seen. The predictive stuff alone is worth the investment if it's as accurate as you say.",
+      "start_time": 500,
+      "end_time": 512
+    }
+  ]
+}
+
