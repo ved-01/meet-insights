@@ -385,13 +385,11 @@ Enable observability and debugging with LangSmith:
 
 Traces include metadata like call IDs, rep names, and company names for easy filtering.
 
-## 🔮 Next Steps & Improvements
+## Next Steps
 
-- [ ] Real-time Chorus API integration
-- [ ] Slack/Teams notifications for new insights
-- [ ] Scheduled processing (daily/weekly)
-- [ ] Custom insight categories
-- [ ] Export to Notion, Airtable
-- [ ] Multi-language transcript support
-- [ ] Sentiment analysis overlay
-- [ ] CRM integration (Salesforce, HubSpot)
+**Immediate Priorities:**
+- [ ] **Complete Chorus API integration** - Currently template implementation; needs real API endpoints and authentication
+
+**Integration & Automation:**
+- [ ] **Slack/Teams notifications** - Send insights to channels when new calls are processed
+- [ ] **Scheduled processing** - Cron job or scheduled task for daily/weekly batch runs
